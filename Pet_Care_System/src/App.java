@@ -8,6 +8,15 @@ public class App {
 
         System.out.println("\n=== Testing Service ===");
         ServiceTest.test();
+
+        System.out.println("\n=== Testing Appointment ===");
+        AppointmentTest.test();
+
+        System.out.println("\n=== Testing MedicalRecord ===");
+        MedicalRecordTest.test();
+
+        System.out.println("\n=== Testing Product ===");
+        ProductTest.test();
     }
 }
 
