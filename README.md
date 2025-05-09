@@ -6,7 +6,7 @@ Group 10: Xây dựng hệ thống chăm sóc thú cưng
 - Đỗ Khắc Huy
 
 # Introduction: 
-
+Chào mừng đến với Hệ thống Chăm sóc Thú cưng, giải pháp tất cả trong một để quản lý mọi khía cạnh cuộc sống của thú cưng bạn. Nền tảng sáng tạo của chúng tôi tích hợp các tính năng thiết yếu như hồ sơ thú cưng chi tiết, theo dõi sức khỏe và lịch hẹn, nhắc nhở thuốc men và một cộng đồng sôi động dành cho những người yêu thú cưng. Khám phá một cách thông minh hơn, đơn giản hơn để chăm sóc những người bạn động vật quý giá của bạn.
 # Các đối tượng (Classes)
 - Thú cưng(Pet)
 - Khách hàng(Customer)
