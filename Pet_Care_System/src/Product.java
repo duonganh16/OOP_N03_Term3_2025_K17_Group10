@@ -1,11 +1,12 @@
- class Product {
-   String name;
-   double price;
-   String description;
+ import java.util.List;
 
- Product(String name, double price, String description) {
-   this.name = name;
-   this.price = price;
-   this.description = description;
- }
+public class Recursion {
+
+    // Tính tổng chi phí các dịch vụ chăm sóc thú cưng bằng đệ quy
+    public static double calculateTotalServicePrice(List<Service> services, int index) {
+        if (index < 0) {
+            return 0;
+        }
+        return services.get(index).getPrice() + calculateTotalServicePrice(services, index - 1);
+    }
 }
