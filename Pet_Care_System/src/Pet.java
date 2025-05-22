@@ -1,4 +1,5 @@
 public class Pet {
+    private int id;
     private String name;
     private int age;
     private String type;
@@ -6,10 +7,15 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(String name, int age, String type) {
+    public Pet(int id, String name, int age, String type) {
+        this.id = id;
         this.name = name;
         this.age = age;
         this.type = type;
+    }
+
+    public int id() {
+        return id;
     }
 
     public String getName() {
