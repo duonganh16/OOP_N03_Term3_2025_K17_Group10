@@ -9,7 +9,7 @@ Chào mừng đến với **Hệ thống Chăm sóc Thú cưng**, một giải p
 - **Hồ sơ thú cưng chi tiết**: Quản lý thông tin của thú cưng như giống loài, tuổi tác, tình trạng sức khỏe.
 - **Theo dõi sức khỏe và lịch hẹn**: Cập nhật tình trạng sức khỏe của thú cưng và theo dõi các lịch hẹn khám bệnh, tiêm phòng.
 - **Nhắc nhở thuốc men**: Nhắc nhở chủ nuôi về các thuốc men cần thiết cho thú cưng và thời gian dùng thuốc.
-- **Cộng đồng yêu thú cưng**: Tạo ra một không gian kết nối những người yêu thú cưng, chia sẻ kinh nghiệm và hỗ trợ nhau.
+- **Cộng đồng yêu thú cưng**: Tạo ra một không gian kết nối những người yêu thú cưng, chia sẻ kinh nghiệm và hỗ trợ nhau trong việc chăm sóc.
 
 ---
 
@@ -29,12 +29,12 @@ Chào mừng đến với **Hệ thống Chăm sóc Thú cưng**, một giải p
    **Thuộc tính**:
    - ID (Mã thú cưng)
    - Name (Tên thú cưng)
-   - Breed (Giống loài)
+   - Type (Giống loài)
    - Age (Tuổi)
    - HealthStatus (Tình trạng sức khỏe)
    - OwnerID (Mã khách hàng)
 
-2. **Khách hàng (Customer)**
+2. **Chủ Pet (Owner)**
    - Lưu trữ thông tin của khách hàng sở hữu thú cưng.
    
    **Thuộc tính**:
@@ -89,7 +89,7 @@ Chào mừng đến với **Hệ thống Chăm sóc Thú cưng**, một giải p
 
    **Thuộc tính**:
    - OrderID (Mã đơn hàng)
-   - CustomerID (Mã khách hàng)
+   - OwnerID (Mã khách hàng)
    - ProductList (Danh sách sản phẩm)
    - TotalPrice (Tổng giá trị)
    - OrderStatus (Trạng thái đơn hàng)
@@ -107,9 +107,9 @@ Chào mừng đến với **Hệ thống Chăm sóc Thú cưng**, một giải p
 
 ## Cấu trúc hệ thống và mối quan hệ giữa các đối tượng
 
-- **Khách hàng (Customer)** có thể sở hữu một hoặc nhiều **Thú cưng (Pet)**.
+- **Chủ Pet (Owner)** có thể sở hữu một hoặc nhiều **Thú cưng (Pet)**.
 - **Thú cưng (Pet)** có thể có nhiều **Lịch hẹn (Appointment)** và một **Hồ sơ bệnh án (MedicalRecord)**.
 - **Lịch hẹn (Appointment)** liên kết với **Dịch vụ (Service)** và **Thú cưng (Pet)**.
-- **Khách hàng (Customer)** có thể đặt nhiều **Đơn hàng (Order)**, mỗi **Đơn hàng (Order)** có thể bao gồm nhiều **Sản phẩm (Product)**.
+- **Chủ Pet (Owner)** có thể đặt nhiều **Đơn hàng (Order)**, mỗi **Đơn hàng (Order)** có thể bao gồm nhiều **Sản phẩm (Product)**.
 - **Nhân viên (Staff)** cung cấp **Dịch vụ (Service)** cho **Thú cưng (Pet)** trong **Lịch hẹn (Appointment)**.
 
