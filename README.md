@@ -113,3 +113,12 @@ Chào mừng đến với **Hệ thống Chăm sóc Thú cưng**, một giải p
 - **Chủ Pet (Owner)** có thể đặt nhiều **Đơn hàng (Order)**, mỗi **Đơn hàng (Order)** có thể bao gồm nhiều **Sản phẩm (Product)**.
 - **Nhân viên (Staff)** cung cấp **Dịch vụ (Service)** cho **Thú cưng (Pet)** trong **Lịch hẹn (Appointment)**.
 
+  
+#CLASS DIAGRAMS
+![Image](https://github.com/user-attachments/assets/a19c91d9-534a-4c77-8eef-496b0a3dce2c)
+#ADD
+![Image](https://github.com/user-attachments/assets/0a03d174-3d55-4fb8-ad2b-85c99832e8f4)
+#DELETE
+![Image](https://github.com/user-attachments/assets/9de3e055-c8aa-4ebe-930e-4dd5913118db)
+#EDIT
+![Image](https://github.com/user-attachments/assets/d03ed994-2941-497b-85cd-a54d1ff5472f)
