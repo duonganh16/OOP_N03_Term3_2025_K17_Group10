@@ -1,11 +1,14 @@
 public class Appointment {
+    private int id; // Thêm id
     private String petName;
     private String ownerName;
     private String date;
     private String time;
     private String service;
 
-    public Appointment(String petName, String ownerName, String date, String time, String service) {
+    // Constructor có thêm id
+    public Appointment(int id, String petName, String ownerName, String date, String time, String service) {
+        this.id = id;
         this.petName = petName;
         this.ownerName = ownerName;
         this.date = date;
@@ -14,6 +17,10 @@ public class Appointment {
     }
 
     // Getters
+    public int getId() {
+        return id;
+    }
+
     public String getPetName() {
         return petName;
     }
@@ -32,6 +39,11 @@ public class Appointment {
 
     public String getService() {
         return service;
+    }
+
+    // Setters
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setPetName(String petName) {
