@@ -10,7 +10,7 @@ public class ViewMethod_MaiAnh {
         System.out.println("\n===== THÔNG TIN CHI TIẾT THÚ CƯNG =====");
         System.out.printf("%-15s: %d\n", "ID", pet.getId());
         System.out.printf("%-15s: %s\n", "Tên", pet.getName());
-        System.out.printf("%-15s: %s\n", "Loài/Type", pet.getType()); // Sử dụng 'Type' theo thuộc tính của bạn
+        System.out.printf("%-15s: %s\n", "Loài/Type", pet.getType()); 
         System.out.printf("%-15s: %d tuổi\n", "Tuổi", pet.getAge());
         System.out.println("======================================");
     }
