@@ -1,5 +1,7 @@
 package methods;
 
+import method2.VaccinationSchedule;
+
 public class Pet {
 
     public Object getNgayDuocVeNha() {

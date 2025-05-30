@@ -3,6 +3,8 @@ package methods;
 import java.time.LocalDate;
 import java.util.List;
 
+import method2.VaccinationSchedule;
+
 public class PetCareSystem {
     private List<Pet> petList;
 
