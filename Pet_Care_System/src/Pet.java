@@ -49,4 +49,10 @@ public class Pet {
     public void setType(String type) {
         this.type = type;
     }
+
+
+    public void showInfo(){
+        //code thuc thi phan showInfo
+        System.out.println("phan show info");
+    }
 }
