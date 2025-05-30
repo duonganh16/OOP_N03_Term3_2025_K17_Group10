@@ -1,19 +1,7 @@
-import java.util.ArrayList;
-
 public class PetList {
-
-    public ArrayList<Pet> addPet(ArrayList<Pet> petList, Pet newPet) {
-        if (newPet != null) {
-            petList.add(newPet);
-            System.out.println("Pet added: " + newPet);
-        }
-        return petList;
-    }
-
     public ArrayList<Pet> updatePet(ArrayList<Pet> petList, int id, String newName, String newType) {
         for (Pet p : petList) {
-            if (p.id() == id) { // em chi co phuong thuc id trong Pet class
-                System.out.println("Found Pet: " + p);
+            if (p.getId() == id) {
                 p.setName(newName);
                 p.setType(newType);
                 System.out.println("Pet updated.");
@@ -25,8 +13,8 @@ public class PetList {
 
     public ArrayList<Pet> deletePet(ArrayList<Pet> petList, int id) {
         for (int i = 0; i < petList.size(); i++) {
-            if (p.id() == id) {
-                System.out.println("Deleted Pet: " + petList.get(i));
+            if (petList.get(i).getId() == id) {
+                System.out.println("Deleted Pet: " + petList.get(i).getName()); 
                 petList.remove(i);
                 break;
             }
@@ -34,14 +22,14 @@ public class PetList {
         return petList;
     }
 
-    public void printPetList(ArrayList<Pet> petList) {
+    public void printPetList(ArrayList<Pet> petList) { 
         if (petList.isEmpty()) {
             System.out.println("No pets to show.");
             return;
         }
         System.out.println("Pet List:");
         for (Pet p : petList) {
-            System.out.println(p);
+            System.out.println("ID: " + p.getId() + ", Name: " + p.getName() + ", Type: " + p.getType() + ", Age: " + p.getAge());
         }
     }
 }
