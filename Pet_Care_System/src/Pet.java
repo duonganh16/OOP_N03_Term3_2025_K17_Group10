@@ -14,6 +14,13 @@ public class Pet {
         this.type = type;
     }
 
+    public Pet( String name, String type, int age) {
+     
+        this.name = name;
+        this.age = age;
+        this.type = type;
+    }
+
     public int id() {
         return id;
     }
