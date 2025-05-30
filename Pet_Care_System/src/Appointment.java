@@ -15,6 +15,12 @@ public class Appointment {
         this.time = time;
         this.service = service;
     }
+    public Appointment(String petName, String ownerName, String date, String time) {
+        this.petName = petName;
+        this.ownerName = ownerName;
+        this.date = date;
+        this.time = time;
+    }
 
     // Getters
     public int getId() {
@@ -64,5 +70,10 @@ public class Appointment {
 
     public void setService(String service) {
         this.service = service;
+    }
+
+    public void displayInfo(){
+        //code thuc thi phan displayInfo
+        System.out.println("phan displayInfo");
     }
 }

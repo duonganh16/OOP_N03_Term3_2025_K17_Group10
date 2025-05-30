@@ -9,6 +9,10 @@ public class Service {
         this.serviceName = serviceName;
         this.price = price;
     }
+    public Service(String serviceName, double price) {
+        this.serviceName = serviceName;
+        this.price = price;
+    }
 
     // Getter và Setter cho id
     public int getId() {
@@ -35,5 +39,9 @@ public class Service {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+    public void displayService(){
+        //code thuc thi phan displayService
+        System.out.println("phan display Service");
     }
 }

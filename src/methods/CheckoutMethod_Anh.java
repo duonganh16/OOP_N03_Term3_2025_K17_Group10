@@ -2,7 +2,6 @@ package methods;
 
 import java.time.LocalDate;
 import java.util.List;
-import model.Pet;
 
 public class CheckoutMethod_Anh {
 

@@ -5,13 +5,22 @@ public class Product {
     private String name;
     private String description;
     private List<Service> services;
+    /**
+     *
+     */
+    private Object price;
 
     // Constructor
-    public Product(int id, String name, String description, List<Service> services) {
-        this.id = id;
+    /**
+     * @param name
+     * @param price
+     * @param description
+     */
+    public Product(String name, double price, String description) {
         this.name = name;
+        this.price = price;
         this.description = description;
-        this.services = services;
+        
     }
 
     // Getter và Setter cho id
@@ -53,5 +62,9 @@ public class Product {
     // Tính tổng chi phí các dịch vụ của sản phẩm bằng đệ quy
     public double getTotalPrice() {
         return Recursion.calculateTotalServicePrice(services, services.size() - 1);
+    }
+    public void displayInfo(){
+        //code thuc thi phan displayInfo
+        System.out.println("phan displayInfo");
     }
 }

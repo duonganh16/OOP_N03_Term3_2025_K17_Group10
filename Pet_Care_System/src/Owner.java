@@ -17,6 +17,10 @@ public class Owner {
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
+    public Owner(String name, String phoneNumber) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+    }
 
     // Getter và Setter cho id
     public int getId() {
@@ -59,4 +63,9 @@ public class Owner {
     public void setEmail(String email) {
         this.email = email;
     }
+    public void showInfo(){
+        //code thuc thi phan showInfo
+        System.out.println("phan show info");
+    }
+
 }

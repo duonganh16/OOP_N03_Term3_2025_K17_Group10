@@ -1,6 +1,8 @@
 package method1;
 
 import java.util.List;
+
+import methods.Pet;
 public class ViewMethod_MaiAnh {
     public static void displayPetDetails(Pet pet) {
         if (pet == null) {
@@ -8,10 +10,10 @@ public class ViewMethod_MaiAnh {
             return;
         }
         System.out.println("\n===== THÔNG TIN CHI TIẾT THÚ CƯNG =====");
-        System.out.printf("%-15s: %d\n", "ID", pet.getId());
+        System.out.printf("%-15s: %d\n", "ID", pet.getTen());
         System.out.printf("%-15s: %s\n", "Tên", pet.getName());
-        System.out.printf("%-15s: %s\n", "Loài/Type", pet.getType()); 
-        System.out.printf("%-15s: %d tuổi\n", "Tuổi", pet.getAge());
+        System.out.printf("%-15s: %s\n", "Loài/Type", pet.getTen()); 
+        System.out.printf("%-15s: %d tuổi\n", "Tuổi", pet.getName());
         System.out.println("======================================");
     }
 
@@ -28,10 +30,10 @@ public class ViewMethod_MaiAnh {
 
         for (Pet pet : pets) {
             System.out.printf("%-5d | %-20s | %-15s | %-5d\n",
-                    pet.getId(),
+                    pet.getTen(),
                     pet.getName(),
-                    pet.getType(), // Sử dụng 'Type'
-                    pet.getAge());
+                    pet.getTen(), // Sử dụng 'Type'
+                    pet.getName());
         }
         System.out.println("---------------------------------------------------------------");
         System.out.println("Tổng số thú cưng: " + pets.size());

@@ -14,6 +14,15 @@ public class MedicalRecord {
         this.date = date;
     }
 
+   
+    public MedicalRecord(String petName, String diagnosis, String treatment, String date) {
+     
+        this.petName = petName;
+        this.diagnosis = diagnosis;
+        this.treatment = treatment;
+        this.date = date;
+    }
+
     // Getters
     public int getId() {
         return id;
@@ -54,5 +63,10 @@ public class MedicalRecord {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public void displayInfo(){
+        //code thuc thi phan displayInfo
+        System.out.println("phan displayInfo");
     }
 }
