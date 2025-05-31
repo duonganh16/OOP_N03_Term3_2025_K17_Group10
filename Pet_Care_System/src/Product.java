@@ -5,11 +5,6 @@ public class Product {
     private String name;
     private String description;
     private List<Service> services;
-    /**
-     *
-     */
-    private Object price;
-
     // Constructor
     /**
      * @param name
@@ -18,7 +13,6 @@ public class Product {
      */
     public Product(String name, double price, String description) {
         this.name = name;
-        this.price = price;
         this.description = description;
         
     }
