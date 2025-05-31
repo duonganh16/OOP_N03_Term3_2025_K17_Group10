@@ -25,34 +25,32 @@ public class Pet {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    // Getter và Setter cho age
-    public int getAge() {
-        return age;
+    public int getId() {
+    return id;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public String getName() {
+    return name;
+    }
+
+    public int getAge(){
+    return age;
     }
 
     public String getType() {
-        return type;
+    return type;
     }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
 
     public void showInfo(){
         //code thuc thi phan showInfo
         System.out.println("phan show info");
+    }
+
+    public void setType(String newType) {
+        throw new UnsupportedOperationException("Unimplemented method 'setType'");
     }
 }

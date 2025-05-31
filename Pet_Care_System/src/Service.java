@@ -1,7 +1,7 @@
 public class Service {
     private int id; // Thêm id
-    private String serviceName;
-    private double price;
+    String serviceName;
+    double price;
 
     // Constructor có id
     public Service(int id, String serviceName, double price) {
