@@ -1,4 +1,5 @@
 package method1;
+
 import methods.Pet;
 
 public class PetValidator {
