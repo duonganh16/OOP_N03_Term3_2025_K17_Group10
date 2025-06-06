@@ -3,6 +3,10 @@ public class Pet {
     private String name;
     private int age;
     private String type;
+    private Owner owner;
+    public Owner getOwner() {
+        return owner;
+    }
 
     public Pet() {
     }
@@ -24,6 +28,11 @@ public class Pet {
     public int id() {
         return id;
     }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
 
     public void setName(String name) {
         this.name = name;

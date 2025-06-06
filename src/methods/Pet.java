@@ -17,4 +17,12 @@ public class Pet {
         throw new UnsupportedOperationException("Unimplemented method 'getName'");
     }
 
+    public void setOwner(Pet owner) {
+        throw new UnsupportedOperationException("Unimplemented method 'setOwner'");
+    }
+
+    public Object getOwner() {
+        throw new UnsupportedOperationException("Unimplemented method 'getOwner'");
+    }
+
 }

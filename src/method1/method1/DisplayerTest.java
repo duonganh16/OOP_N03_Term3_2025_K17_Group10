@@ -1,6 +1,8 @@
+package method1;
+
 import methods.Pet;
 
-public class PetDisplayer {
+public class DisplayerTest {
     public static void printPetDetails(Pet pet) {
         System.out.println("===== Thông Tin Thú Cưng =====");
         System.out.println("ID: " + pet.getTen());
@@ -13,5 +15,10 @@ public class PetDisplayer {
         } else {
             System.out.println("Chủ sở hữu: (Chưa xác định)");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "DisplayerTest []";
     }
 }
