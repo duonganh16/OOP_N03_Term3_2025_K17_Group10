@@ -130,7 +130,8 @@ Chào mừng đến với **Hệ thống Chăm sóc Thú cưng**, một giải p
 #EDIT
 ![Image](https://github.com/user-attachments/assets/d03ed994-2941-497b-85cd-a54d1ff5472f)
 
-## Lưu đồ thuật toán phương thức 1
+## Lưu đồ thuật toán phương thức 1: DisplayPetDetails
+
 Bắt đầu
 
 Kiểm tra: pets == null || pets.isEmpty()
