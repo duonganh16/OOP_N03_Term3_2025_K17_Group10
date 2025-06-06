@@ -129,3 +129,21 @@ Chào mừng đến với **Hệ thống Chăm sóc Thú cưng**, một giải p
 
 #EDIT
 ![Image](https://github.com/user-attachments/assets/d03ed994-2941-497b-85cd-a54d1ff5472f)
+
+## Lưu đồ thuật toán phương thức 1
+Bắt đầu
+
+Kiểm tra: pets == null || pets.isEmpty()
+
+Nếu đúng → In "Danh sách thú cưng trống. Không có gì để hiển thị." → Kết thúc
+
+Nếu sai → In tiêu đề bảng
+
+Duyệt for (Pet pet : pets):
+
+In: ID, Tên, Loại, Tuổi của mỗi thú cưng
+
+In tổng số thú cưng
+
+Kết thúc
+
