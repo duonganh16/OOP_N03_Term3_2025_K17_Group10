@@ -2,6 +2,7 @@ package method1;
 
 import methods.Pet;
 
+
 public class PetValidatorTest {
     public static void main(String[] args) {
         // Test với pet null => phải trả về false
