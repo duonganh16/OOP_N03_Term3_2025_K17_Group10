@@ -146,4 +146,4 @@ In: ID, Tên, Loại, Tuổi của mỗi thú cưng
 In tổng số thú cưng
 
 Kết thúc
-
+![Image](https://github.com/user-attachments/assets/2f0c851d-de40-47e0-aaa1-e5c97e231e53)
