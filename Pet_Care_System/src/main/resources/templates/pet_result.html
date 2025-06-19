@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Kết quả kiểm tra</title>
+</head>
+<body>
+<h1>Kết quả kiểm tra Thú Cưng</h1>
+
+<p>Tên: <span th:text="${pet.name}"></span></p>
+<p>Tuổi: <span th:text="${pet.age}"></span></p>
+<p>Loại: <span th:text="${pet.type}"></span></p>
+
+<div th:if="${isValid}" style="color: green;">
+    ✅ Thú cưng hợp lệ!
+</div>
+<div th:unless="${isValid}" style="color: red;">
+    ❌ Thú cưng không hợp lệ!
+</div>
+
+<a href="/pet/form">🔙 Quay lại</a>
+</body>
+</html>

@@ -148,3 +148,12 @@ In tổng số thú cưng
 
 Kết thúc
 ![Image](https://github.com/user-attachments/assets/2f0c851d-de40-47e0-aaa1-e5c97e231e53)
+
+## Giao diện kiểm tra Thú Cưng
+
+- Đường dẫn nhập: `/pet/form`
+- Xử lý kiểm tra: `/pet/validate`
+
+| Thành viên       | Chức năng UI đã làm                     | File liên quan                 |
+|------------------|------------------------------------------|--------------------------------|
+| Nguyễn Dương Ngọc Ánh     | Kiểm tra Pet hợp lệ bằng form và View   | PetController.java + HTML     |
