@@ -4,12 +4,12 @@ public class DichvuService {
     double price;
 
     // Constructor có id
-    public Service(int id, String serviceName, double price) {
+    public DichvuService(int id, String serviceName, double price) {
         this.id = id;
         this.serviceName = serviceName;
         this.price = price;
     }
-    public Service(String serviceName, double price) {
+    public DichvuService(String serviceName, double price) {
         this.serviceName = serviceName;
         this.price = price;
     }
