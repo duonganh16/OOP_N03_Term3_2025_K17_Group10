@@ -1,4 +1,4 @@
-import methods.Pet;
+import com.example.servingwebcontent.Model.Pet;
 
 public class PetTest {
     public static void test() {

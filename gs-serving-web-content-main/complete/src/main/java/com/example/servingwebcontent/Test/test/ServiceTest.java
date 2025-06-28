@@ -1,7 +1,8 @@
+import com.example.servingwebcontent.Model.DichvuService;
+
 public class ServiceTest {
     public static void test() {
-        Service service = new Service("Grooming", 29.99);
-        service.displayService();
+        DichvuService service = new DichvuService("Grooming", 29.99);
+        // logic test
     }
 }
-

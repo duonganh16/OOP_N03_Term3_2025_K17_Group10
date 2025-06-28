@@ -1,20 +1,16 @@
 import java.util.List;
+import com.example.servingwebcontent.Model.DichvuService;
 
 public class Product {
     private int id; // Thêm id
     private String name;
     private String description;
-    private List<Service> services;
+    private List<DichvuService> services;
+
     // Constructor
-    /**
-     * @param name
-     * @param price
-     * @param description
-     */
     public Product(String name, double price, String description) {
         this.name = name;
         this.description = description;
-        
     }
 
     // Getter và Setter cho id
@@ -45,11 +41,11 @@ public class Product {
     }
 
     // Getter và Setter cho services
-    public List<Service> getServices() {
+    public List<DichvuService> getServices() {
         return services;
     }
 
-    public void setServices(List<Service> services) {
+    public void setServices(List<DichvuService> services) {
         this.services = services;
     }
 
@@ -57,8 +53,8 @@ public class Product {
     public double getTotalPrice() {
         return Recursion.calculateTotalServicePrice(services, services.size() - 1);
     }
+
     public void displayInfo(){
-        //code thuc thi phan displayInfo
         System.out.println("phan displayInfo");
     }
 }
