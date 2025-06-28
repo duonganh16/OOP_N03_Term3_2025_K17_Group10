@@ -1,6 +1,6 @@
 package com.petcare.controller;
 
-import org.testng.reporters.jq.Model;
+import org.springframework.ui.Model;
 
 import methods.Pet;
 
@@ -10,7 +10,7 @@ public class PetController {
 
     @GetMapping("/form")
     public String showForm(Model model) {
-        model("pet", new Pet(0, "Chó", "Dog", 2));
+        model.addAttribute("pet", new Pet(0, "Chó", "Dog", 2));
         return "pet_form";
     }
 
