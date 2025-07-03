@@ -1,4 +1,6 @@
-package methods;
+package com.example.servingwebcontent.methods;
+
+import com.example.servingwebcontent.method2.VaccinationSchedule;
 
 public class Pet {
 
@@ -36,5 +38,9 @@ public class Pet {
 		
 		throw new UnsupportedOperationException("Unimplemented method 'setName'");
 	}
+
+    public VaccinationSchedule[] getVaccinationSchedules() {
+        throw new UnsupportedOperationException("Unimplemented method 'getVaccinationSchedules'");
+    }
 
 }

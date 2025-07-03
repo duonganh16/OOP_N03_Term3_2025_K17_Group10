@@ -1,3 +1,5 @@
+package com.example.servingwebcontent.Model;
+
 public class Appointment {
     private int id; // Thêm id
     private String petName;

@@ -1,4 +1,4 @@
-package methods;
+package com.example.servingwebcontent.Model;
 
 public class Pet {
     private int id;

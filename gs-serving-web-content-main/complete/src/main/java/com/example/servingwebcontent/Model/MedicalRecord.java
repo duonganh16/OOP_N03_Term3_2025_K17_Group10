@@ -1,3 +1,5 @@
+package com.example.servingwebcontent.Model;
+
 public class MedicalRecord {
     private int id; // Thêm thuộc tính id
     private String petName;

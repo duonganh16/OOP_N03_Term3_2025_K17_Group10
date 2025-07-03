@@ -1,3 +1,5 @@
+package com.example.servingwebcontent.Model;
+
 public class DichvuService {
     private int id; // Thêm id
     String serviceName;

@@ -1,5 +1,6 @@
+package com.example.servingwebcontent.Model;
+
 import java.util.List;
-import com.example.servingwebcontent.Model.DichvuService;
 
 public class Product {
     private int id; // Thêm id

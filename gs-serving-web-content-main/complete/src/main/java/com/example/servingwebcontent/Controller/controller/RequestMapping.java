@@ -1,4 +1,4 @@
-package com.petcare.controller;
+package com.example.servingwebcontent.Controller.controller;
 
 public @interface RequestMapping {
 

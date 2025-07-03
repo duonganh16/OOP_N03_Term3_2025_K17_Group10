@@ -1,7 +1,6 @@
-package method1;
+package com.example.servingwebcontent.method1;
 
-import methods.Pet;
-
+import com.example.servingwebcontent.methods.Pet;
 
 public class PetValidatorTest {
     public static void main(String[] args) {

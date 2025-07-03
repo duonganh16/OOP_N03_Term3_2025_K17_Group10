@@ -1,8 +1,8 @@
-package method1;
+package com.example.servingwebcontent.method1;
 
 import java.util.List;
 
-import methods.Pet;
+import com.example.servingwebcontent.methods.Pet;
 public class ViewMethod_MaiAnh {
     public static void displayPetDetails(Pet pet) {
         if (pet == null) {

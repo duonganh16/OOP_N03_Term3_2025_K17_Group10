@@ -1,7 +1,11 @@
+package com.example.servingwebcontent.methods;
+
 import java.time.LocalDate;
 import java.util.List;
 
-public class PetCareSystem {
+import com.example.servingwebcontent.method2.VaccinationSchedule;
+
+public class VaccinationToday_Huy {
     private List<Pet> petList;
 
     public void displayVaccinationToday() {

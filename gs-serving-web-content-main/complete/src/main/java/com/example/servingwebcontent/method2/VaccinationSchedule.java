@@ -1,4 +1,4 @@
-package method2;
+package com.example.servingwebcontent.method2;
 
 public class VaccinationSchedule {
 
