@@ -1,4 +1,3 @@
-
 package com.example.servingwebcontent.Model;
 
 import org.springframework.boot.SpringApplication;
