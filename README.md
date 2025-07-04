@@ -129,7 +129,7 @@ Chào mừng đến với **Hệ thống Chăm sóc Thú cưng**, một giải p
 #EDIT
 ![Image](https://github.com/user-attachments/assets/d03ed994-2941-497b-85cd-a54d1ff5472f)
 
-## Lưu đồ thuật toán phương thức 1: DisplayPetDetails
+## Lưu đồ thuật toán phương thức: DisplayPetDetails
 
 Bắt đầu
 
@@ -146,5 +146,22 @@ In: ID, Tên, Loại, Tuổi của mỗi thú cưng
 In tổng số thú cưng
 
 Kết thúc
-![Image](https://github.com/user-attachments/assets/2f0c851d-de40-47e0-aaa1-e5c97e231e53)
+
+## Giao diện: 
+
+
+## Hướng dẫn cài đặt và chạy chương trình
+1.	Cài đặt môi trường:
+
+- Cài đặt JDK (Java Development Kit).
+- Cài đặt IDE hỗ trợ Java SpringBoot .
+- Cài đặt thư viện nếu chưa có sẵn.
+
+2.	Clone repository từ GitHub: https://github.com/duonganh16/OOP_N03_Term3_2025_K17_Group10.git
+
+3.	Chạy chương trình:
+
+Import project vào IDE và cấu hình Java SpringBoot.
+Chạy file App.java để khởi động ứng dụng.
+
 
