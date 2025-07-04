@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Management - Pet Care System</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 25px;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #2c3e50 !important;
+        }
+        .badge {
+            border-radius: 20px;
+            padding: 8px 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-paw me-2"></i>Pet Care System
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/"><i class="fas fa-home me-1"></i>Home</a>
+                <a class="nav-link active" href="/pets"><i class="fas fa-dog me-1"></i>Pets</a>
+                <a class="nav-link" href="/owners"><i class="fas fa-users me-1"></i>Owners</a>
+                <a class="nav-link" href="/appointments"><i class="fas fa-calendar me-1"></i>Appointments</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Flash Messages -->
+        <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>
+            <span th:text="${success}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        
+        <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            <span th:text="${error}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <!-- Page Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h2 mb-0">
+                <i class="fas fa-paw me-2"></i>Pet Management
+            </h1>
+            <div>
+                <a href="/pets/new" class="btn btn-primary">
+                    <i class="fas fa-plus me-1"></i>Add New Pet
+                </a>
+                <a href="/pets/statistics" class="btn btn-outline-info">
+                    <i class="fas fa-chart-bar me-1"></i>Statistics
+                </a>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row mb-4" th:if="${totalPets != null}">
+            <div class="col-md-3">
+                <div class="card bg-primary text-white">
+                    <div class="card-body text-center">
+                        <h3 th:text="${totalPets}">0</h3>
+                        <p class="mb-0">Total Pets</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-success text-white">
+                    <div class="card-body text-center">
+                        <h3 th:text="${speciesStats != null ? speciesStats.size() : 0}">0</h3>
+                        <p class="mb-0">Species Types</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-info text-white">
+                    <div class="card-body text-center">
+                        <h3>0</h3>
+                        <p class="mb-0">Healthy Pets</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-warning text-white">
+                    <div class="card-body text-center">
+                        <h3>0</h3>
+                        <p class="mb-0">Need Checkup</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Form -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="fas fa-search me-2"></i>Search Pets
+                    <span th:if="${searchQuery != null or searchSpecies != null}" class="badge bg-info ms-2">Filtered</span>
+                </h6>
+            </div>
+            <div class="card-body">
+                <form action="/pets" method="get" class="row g-3">
+                    <div class="col-md-4">
+                        <label for="query" class="form-label">Search by Name</label>
+                        <input type="text" class="form-control" id="query" name="query"
+                               placeholder="Enter pet name..." th:value="${searchQuery}">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="species" class="form-label">Filter by Species</label>
+                        <select class="form-select" id="species" name="species">
+                            <option value="">All Species</option>
+                            <option value="Dog" th:selected="${searchSpecies == 'Dog'}">Dog</option>
+                            <option value="Cat" th:selected="${searchSpecies == 'Cat'}">Cat</option>
+                            <option value="Bird" th:selected="${searchSpecies == 'Bird'}">Bird</option>
+                            <option value="Rabbit" th:selected="${searchSpecies == 'Rabbit'}">Rabbit</option>
+                            <option value="Fish" th:selected="${searchSpecies == 'Fish'}">Fish</option>
+                            <option value="Hamster" th:selected="${searchSpecies == 'Hamster'}">Hamster</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-search me-1"></i>Search
+                        </button>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <a href="/pets" class="btn btn-outline-secondary w-100">
+                            <i class="fas fa-times me-1"></i>Clear
+                        </a>
+                    </div>
+                </form>
+
+                <!-- Search Results Info -->
+                <div th:if="${searchQuery != null or searchSpecies != null}" class="mt-3 p-2 bg-light rounded">
+                    <small class="text-muted">
+                        <i class="fas fa-info-circle me-1"></i>
+                        <span th:if="${searchQuery != null}">Searching for: "<strong th:text="${searchQuery}"></strong>"</span>
+                        <span th:if="${searchSpecies != null}">Species filter: <strong th:text="${searchSpecies}"></strong></span>
+                        <span th:if="${searchQuery != null and searchSpecies != null}"> and </span>
+                        - Found <strong th:text="${totalPets}">0</strong> result(s)
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pets Table -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-list me-2"></i>
+                    <span th:if="${searchQuery != null or searchSpecies != null}">Search Results</span>
+                    <span th:unless="${searchQuery != null or searchSpecies != null}">All Pets</span>
+                    <span th:if="${pets != null}" class="badge bg-secondary ms-2" th:text="${pets.size()}">0</span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <!-- No Results Message -->
+                <div th:if="${pets == null or #lists.isEmpty(pets)}" class="text-center py-5">
+                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">
+                        <span th:if="${searchQuery != null or searchSpecies != null}">No pets found</span>
+                        <span th:unless="${searchQuery != null or searchSpecies != null}">No pets available</span>
+                    </h5>
+                    <p class="text-muted mb-4">
+                        <span th:if="${searchQuery != null}">No pets match your search for "<span th:text="${searchQuery}"></span>"</span>
+                        <span th:if="${searchSpecies != null}">No pets found for species "<span th:text="${searchSpecies}"></span>"</span>
+                        <span th:unless="${searchQuery != null or searchSpecies != null}">There are no pets registered yet.</span>
+                    </p>
+                    <div>
+                        <a href="/pets/new" class="btn btn-primary me-2">
+                            <i class="fas fa-plus me-1"></i>Add New Pet
+                        </a>
+                        <a th:if="${searchQuery != null or searchSpecies != null}" href="/pets" class="btn btn-outline-secondary">
+                            <i class="fas fa-list me-1"></i>View All Pets
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Results Table -->
+                <div th:if="${pets != null and not #lists.isEmpty(pets)}">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Species</th>
+                                    <th>Breed</th>
+                                    <th>Age</th>
+                                    <th>Owner</th>
+                                    <th>Health Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="pet : ${pets}">
+                                    <td>
+                                        <strong th:text="${pet.name}">Pet Name</strong>
+                                        <br>
+                                        <small class="text-muted" th:text="${pet.color}">Color</small>
+                                    </td>
+                                    <td>
+                                        <i class="fas fa-paw me-1"></i>
+                                        <span th:text="${pet.species}">Species</span>
+                                    </td>
+                                    <td th:text="${pet.breed != null and pet.breed != '' ? pet.breed : 'Mixed'}">Breed</td>
+                                    <td>
+                                        <span th:text="${pet.age != null ? pet.age + ' years' : 'Unknown'}">Age</span>
+                                        <br>
+                                        <small class="text-muted" th:text="${pet.gender != null ? pet.gender : 'Unknown'}">Gender</small>
+                                    </td>
+                                    <td>
+                                        <span th:text="${pet.ownerName != null and pet.ownerName != '' ? pet.ownerName : 'No Owner'}">Owner</span>
+                                        <br>
+                                        <small class="text-muted" th:text="${pet.ownerPhone != null and pet.ownerPhone != '' ? pet.ownerPhone : ''}">Phone</small>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-success" th:text="${pet.healthStatus != null ? pet.healthStatus : 'Unknown'}">Status</span>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a th:href="@{/pets/{id}(id=${pet.petId})}" class="btn btn-sm btn-outline-info">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a th:href="@{/pets/{id}/edit(id=${pet.petId})}" class="btn btn-sm btn-outline-warning">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <form th:action="@{/pets/{id}/delete(id=${pet.petId})}" method="post" class="d-inline">
+                                                <button type="submit" class="btn btn-sm btn-outline-danger" 
+                                                        onclick="return confirm('Are you sure you want to delete this pet?')">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div th:if="${pets == null or #lists.isEmpty(pets)}" class="text-center py-5">
+                    <i class="fas fa-dog fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">No pets found</h5>
+                    <p class="text-muted">Start by adding your first pet to the system.</p>
+                    <a href="/pets/new" class="btn btn-primary">
+                        <i class="fas fa-plus me-1"></i>Add First Pet
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Auto-hide alerts after 5 seconds
+        setTimeout(function() {
+            var alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                var bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
+        }, 5000);
+    </script>
+</body>
+</html>

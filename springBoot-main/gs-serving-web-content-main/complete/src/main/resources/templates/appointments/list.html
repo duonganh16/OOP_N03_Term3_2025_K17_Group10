@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Management - Pet Care System</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 25px;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #2c3e50 !important;
+        }
+        .badge {
+            border-radius: 20px;
+            padding: 8px 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-paw me-2"></i>Pet Care System
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/"><i class="fas fa-home me-1"></i>Home</a>
+                <a class="nav-link" href="/pets"><i class="fas fa-dog me-1"></i>Pets</a>
+                <a class="nav-link" href="/owners"><i class="fas fa-users me-1"></i>Owners</a>
+                <a class="nav-link active" href="/appointments"><i class="fas fa-calendar me-1"></i>Appointments</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Flash Messages -->
+        <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>
+            <span th:text="${success}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        
+        <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            <span th:text="${error}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <!-- Page Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h2 mb-0">
+                <i class="fas fa-calendar me-2"></i>Appointment Management
+            </h1>
+            <div>
+                <a href="/appointments/new" class="btn btn-primary">
+                    <i class="fas fa-calendar-plus me-1"></i>Schedule Appointment
+                </a>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row mb-4" th:if="${totalAppointments != null}">
+            <div class="col-md-3">
+                <div class="card bg-primary text-white">
+                    <div class="card-body text-center">
+                        <h3 th:text="${totalAppointments}">0</h3>
+                        <p class="mb-0">Total Appointments</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-success text-white">
+                    <div class="card-body text-center">
+                        <h3>0</h3>
+                        <p class="mb-0">Scheduled</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-info text-white">
+                    <div class="card-body text-center">
+                        <h3>0</h3>
+                        <p class="mb-0">Completed</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-warning text-white">
+                    <div class="card-body text-center">
+                        <h3>0</h3>
+                        <p class="mb-0">Avg Cost (VNĐ)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <a href="/appointments/status/SCHEDULED" class="btn btn-outline-primary w-100">
+                    <i class="fas fa-calendar-check me-1"></i>Scheduled
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="/appointments/status/COMPLETED" class="btn btn-outline-success w-100">
+                    <i class="fas fa-check-circle me-1"></i>Completed
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="/appointments/status/CANCELLED" class="btn btn-outline-danger w-100">
+                    <i class="fas fa-times-circle me-1"></i>Cancelled
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="/appointments/upcoming" class="btn btn-outline-info w-100">
+                    <i class="fas fa-calendar-week me-1"></i>Upcoming
+                </a>
+            </div>
+        </div>
+
+        <!-- Search Form -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="fas fa-search me-2"></i>Search Appointments
+                    <span th:if="${searchQuery != null or searchPetId != null}" class="badge bg-info ms-2">Filtered</span>
+                </h6>
+            </div>
+            <div class="card-body">
+                <form action="/appointments" method="get" class="row g-3">
+                    <div class="col-md-4">
+                        <label for="query" class="form-label">Search by Service Type</label>
+                        <input type="text" class="form-control" id="query" name="query"
+                               placeholder="Enter service type..." th:value="${searchQuery}">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="petId" class="form-label">Filter by Pet</label>
+                        <select class="form-select" id="petId" name="petId">
+                            <option value="">All Pets</option>
+                            <option th:each="pet : ${pets}"
+                                    th:value="${pet.petId}"
+                                    th:text="${pet.name + ' (' + pet.species + ')'}"
+                                    th:selected="${searchPetId != null and searchPetId == pet.petId}">
+                                Pet Name (Species)
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-search me-1"></i>Search
+                        </button>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <a href="/appointments" class="btn btn-outline-secondary w-100">
+                            <i class="fas fa-times me-1"></i>Clear
+                        </a>
+                    </div>
+                </form>
+
+                <!-- Search Results Info -->
+                <div th:if="${searchQuery != null or searchPetId != null}" class="mt-3 p-2 bg-light rounded">
+                    <small class="text-muted">
+                        <i class="fas fa-info-circle me-1"></i>
+                        <span th:if="${searchQuery != null}">Searching for: "<strong th:text="${searchQuery}"></strong>"</span>
+                        <span th:if="${searchPetName != null}">Showing appointments for: <strong th:text="${searchPetName}"></strong></span>
+                        <span th:if="${searchQuery != null and searchPetId != null}"> and </span>
+                        - Found <strong th:text="${totalAppointments}">0</strong> result(s)
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appointments Table -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-list me-2"></i>
+                    <span th:if="${searchQuery != null or searchPetId != null}">Search Results</span>
+                    <span th:unless="${searchQuery != null or searchPetId != null}">All Appointments</span>
+                    <span th:if="${appointments != null}" class="badge bg-secondary ms-2" th:text="${appointments.size()}">0</span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <!-- No Results Message -->
+                <div th:if="${appointments == null or #lists.isEmpty(appointments)}" class="text-center py-5">
+                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">
+                        <span th:if="${searchQuery != null or searchPetId != null}">No appointments found</span>
+                        <span th:unless="${searchQuery != null or searchPetId != null}">No appointments available</span>
+                    </h5>
+                    <p class="text-muted mb-4">
+                        <span th:if="${searchQuery != null}">No appointments match your search for "<span th:text="${searchQuery}"></span>"</span>
+                        <span th:if="${searchPetName != null}">No appointments found for <span th:text="${searchPetName}"></span></span>
+                        <span th:unless="${searchQuery != null or searchPetId != null}">There are no appointments scheduled yet.</span>
+                    </p>
+                    <div>
+                        <a href="/appointments/new" class="btn btn-primary me-2">
+                            <i class="fas fa-plus me-1"></i>Schedule New Appointment
+                        </a>
+                        <a th:if="${searchQuery != null or searchPetId != null}" href="/appointments" class="btn btn-outline-secondary">
+                            <i class="fas fa-list me-1"></i>View All Appointments
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Results Table -->
+                <div th:if="${appointments != null and not #lists.isEmpty(appointments)}">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Date & Time</th>
+                                    <th>Pet & Owner</th>
+                                    <th>Service</th>
+                                    <th>Veterinarian</th>
+                                    <th>Status</th>
+                                    <th>Cost</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="appointment : ${appointments}">
+                                    <td>
+                                        <strong th:text="${appointment.appointmentDate != null ? #temporals.format(appointment.appointmentDate, 'dd/MM/yyyy') : 'No Date'}">Date</strong>
+                                        <br>
+                                        <small class="text-muted" th:text="${appointment.appointmentDate != null ? #temporals.format(appointment.appointmentDate, 'HH:mm') : ''}">Time</small>
+                                    </td>
+                                    <td>
+                                        <strong th:text="${appointment.petName != null and appointment.petName != '' ? appointment.petName : 'Unknown Pet'}">Pet Name</strong>
+                                        <br>
+                                        <small class="text-muted" th:text="${appointment.ownerName != null and appointment.ownerName != '' ? appointment.ownerName : 'Unknown Owner'}">Owner</small>
+                                    </td>
+                                    <td>
+                                        <span th:text="${appointment.serviceType != null ? appointment.serviceType : 'No Service'}">Service</span>
+                                        <br>
+                                        <small class="text-muted" th:text="${appointment.description != null and appointment.description != '' ? appointment.description : 'No description'}">Description</small>
+                                    </td>
+                                    <td th:text="${appointment.veterinarian != null and appointment.veterinarian != '' ? appointment.veterinarian : 'Not assigned'}">Veterinarian</td>
+                                    <td>
+                                        <span class="badge bg-primary" th:text="${appointment.status != null ? appointment.status : 'Unknown'}">Status</span>
+                                    </td>
+                                    <td th:text="${appointment.cost != null ? appointment.cost + ' VNĐ' : 'Free'}">Cost</td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a th:href="@{/appointments/{id}(id=${appointment.appointmentId})}" class="btn btn-sm btn-outline-info">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a th:href="@{/appointments/{id}/edit(id=${appointment.appointmentId})}"
+                                               class="btn btn-sm btn-outline-warning">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <form th:action="@{/appointments/{id}/cancel(id=${appointment.appointmentId})}" method="post" class="d-inline">
+                                                <button type="submit" class="btn btn-sm btn-outline-danger"
+                                                        onclick="return confirm('Are you sure you want to cancel this appointment?')">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div th:if="${appointments == null or #lists.isEmpty(appointments)}" class="text-center py-5">
+                    <i class="fas fa-calendar fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">No appointments found</h5>
+                    <p class="text-muted">Start by scheduling the first appointment.</p>
+                    <a href="/appointments/new" class="btn btn-primary">
+                        <i class="fas fa-calendar-plus me-1"></i>Schedule First Appointment
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Auto-hide alerts after 5 seconds
+        setTimeout(function() {
+            var alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                var bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
+        }, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nhập Thú Cưng</title>
+</head>
+<body>
+<h1>Nhập thông tin Thú Cưng</h1>
+<form action="#" th:action="@{/pet/validate}" th:object="${pet}" method="post">
+    <p>ID: <input type="number" th:field="*{Id}" required/></p>
+    <p>Tên: <input type="text" th:field="*{name}" required/></p>
+    <p>Tuổi: <input type="number" th:field="*{age}" required/></p>
+    <p>Loại: <input type="text" th:field="*{type}" required/></p>
+    <button type="submit">Kiểm tra</button>
+</form>
+</body>
+</html>

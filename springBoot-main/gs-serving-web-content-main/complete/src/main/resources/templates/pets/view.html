@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Details - Pet Care System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-paw me-2"></i>Pet Care System
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link active" href="/pets">Pets</a>
+                <a class="nav-link" href="/owners">Owners</a>
+                <a class="nav-link" href="/appointments">Appointments</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Pet Details</h1>
+            <a href="/pets" class="btn btn-outline-secondary">Back to Pets</a>
+        </div>
+
+        <div th:if="${pet}">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Pet Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Name:</strong> <span th:text="${pet.name}">Pet Name</span></p>
+                            <p><strong>Species:</strong> <span th:text="${pet.species}">Species</span></p>
+                            <p><strong>Breed:</strong>
+                                <span th:if="${pet.breed}" th:text="${pet.breed}">Breed</span>
+                                <span th:unless="${pet.breed}">Mixed/Unknown</span>
+                            </p>
+                            <p><strong>Age:</strong>
+                                <span th:if="${pet.age}" th:text="${pet.age}">Age</span>
+                                <span th:unless="${pet.age}">Unknown</span>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Weight:</strong>
+                                <span th:if="${pet.weight}" th:text="${pet.weight}">Weight</span>
+                                <span th:unless="${pet.weight}">Not recorded</span>
+                            </p>
+                            <p><strong>Color:</strong>
+                                <span th:if="${pet.color}" th:text="${pet.color}">Color</span>
+                                <span th:unless="${pet.color}">Not specified</span>
+                            </p>
+                            <p><strong>Gender:</strong>
+                                <span th:if="${pet.gender}" th:text="${pet.gender}">Gender</span>
+                                <span th:unless="${pet.gender}">Unknown</span>
+                            </p>
+                            <p><strong>Health Status:</strong>
+                                <span th:if="${pet.healthStatus}" th:text="${pet.healthStatus}">Status</span>
+                                <span th:unless="${pet.healthStatus}">Unknown</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div th:unless="${pet}" class="alert alert-warning">
+            <h4>Pet not found</h4>
+            <p>The requested pet could not be found.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

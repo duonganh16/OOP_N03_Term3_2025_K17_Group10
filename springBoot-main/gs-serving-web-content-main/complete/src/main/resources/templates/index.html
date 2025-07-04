@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle ?: 'Pet Care Management System'}">Pet Care System</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+        .stats-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .stats-card:hover {
+            transform: translateY(-10px);
+        }
+        .stats-card h3 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #2c3e50 !important;
+        }
+        .quick-action-card {
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .quick-action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-paw me-2"></i>Pet Care System
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/"><i class="fas fa-home me-1"></i>Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pets"><i class="fas fa-dog me-1"></i>Pets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/owners"><i class="fas fa-users me-1"></i>Owners</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/appointments"><i class="fas fa-calendar me-1"></i>Appointments</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Hero Section -->
+        <div class="hero-section text-center">
+            <h1 class="display-4 mb-3">
+                <i class="fas fa-heart me-3"></i>Pet Care Management System
+            </h1>
+            <p class="lead mb-4">Professional pet care management solution built with Spring Boot & OOP principles</p>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <p class="mb-0">Manage pets, owners, and appointments with ease. Track health records, schedule visits, and maintain comprehensive pet care data.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row mb-5">
+            <div class="col-md-3 mb-4">
+                <div class="stats-card">
+                    <i class="fas fa-paw fa-2x mb-3"></i>
+                    <h3 th:text="${totalPets != null ? totalPets : 0}">0</h3>
+                    <p class="mb-0">Total Pets</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stats-card">
+                    <i class="fas fa-users fa-2x mb-3"></i>
+                    <h3 th:text="${totalOwners != null ? totalOwners : 0}">0</h3>
+                    <p class="mb-0">Pet Owners</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stats-card">
+                    <i class="fas fa-calendar fa-2x mb-3"></i>
+                    <h3 th:text="${totalAppointments != null ? totalAppointments : 0}">0</h3>
+                    <p class="mb-0">Appointments</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stats-card">
+                    <i class="fas fa-chart-line fa-2x mb-3"></i>
+                    <h3 th:text="${averagePetsPerOwner != null ? #numbers.formatDecimal(averagePetsPerOwner, 1, 1) : '0.0'}">0.0</h3>
+                    <p class="mb-0">Avg Pets/Owner</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h2 class="mb-4"><i class="fas fa-bolt me-2"></i>Quick Actions</h2>
+            </div>
+            <div class="col-md-4 mb-3">
+                <a href="/pets/new" class="text-decoration-none">
+                    <div class="quick-action-card">
+                        <i class="fas fa-plus fa-3x mb-3"></i>
+                        <h5>Add New Pet</h5>
+                        <p class="mb-0">Register a new pet in the system</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 mb-3">
+                <a href="/owners/new" class="text-decoration-none">
+                    <div class="quick-action-card">
+                        <i class="fas fa-user-plus fa-3x mb-3"></i>
+                        <h5>Add New Owner</h5>
+                        <p class="mb-0">Register a new pet owner</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 mb-3">
+                <a href="/appointments/new" class="text-decoration-none">
+                    <div class="quick-action-card">
+                        <i class="fas fa-calendar-plus fa-3x mb-3"></i>
+                        <h5>Schedule Appointment</h5>
+                        <p class="mb-0">Book a new appointment</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="row">
+            <!-- Today's Appointments -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-clock me-2"></i>Today's Appointments</h5>
+                    </div>
+                    <div class="card-body">
+                        <div th:if="${todaysAppointments != null and not #lists.isEmpty(todaysAppointments)}">
+                            <div th:each="appointment : ${todaysAppointments}" class="d-flex justify-content-between align-items-center border-bottom py-2">
+                                <div>
+                                    <strong th:text="${appointment.serviceType}">Service</strong><br>
+                                    <small class="text-muted">
+                                        <span th:text="${appointment.petName != null ? appointment.petName : 'Unknown Pet'}">Pet</span> -
+                                        <span th:text="${appointment.formattedDate}">Time</span>
+                                    </small>
+                                </div>
+                                <span class="badge bg-info" th:text="${appointment.statusDisplayName}">Status</span>
+                            </div>
+                        </div>
+                        <div th:if="${todaysAppointments == null or #lists.isEmpty(todaysAppointments)}" class="text-center text-muted py-4">
+                            <i class="fas fa-calendar-check fa-3x mb-3"></i>
+                            <p>No appointments scheduled for today</p>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="/appointments/today" class="btn btn-outline-primary btn-sm">View All Today's Appointments</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Pets -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="fas fa-paw me-2"></i>Recent Pets</h5>
+                    </div>
+                    <div class="card-body">
+                        <div th:if="${recentPets != null and not #lists.isEmpty(recentPets)}">
+                            <div th:each="pet : ${recentPets}" class="d-flex justify-content-between align-items-center border-bottom py-2">
+                                <div>
+                                    <strong th:text="${pet.name}">Pet Name</strong><br>
+                                    <small class="text-muted">
+                                        <span th:text="${pet.species}">Species</span>
+                                        <span th:if="${pet.breed != null and pet.breed != ''}" th:text="' - ' + ${pet.breed}"></span>
+                                    </small>
+                                </div>
+                                <span class="badge bg-success" th:text="${pet.healthStatusDisplayName}">Status</span>
+                            </div>
+                        </div>
+                        <div th:if="${recentPets == null or #lists.isEmpty(recentPets)}" class="text-center text-muted py-4">
+                            <i class="fas fa-dog fa-3x mb-3"></i>
+                            <p>No pets registered yet</p>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="/pets" class="btn btn-outline-success btn-sm">View All Pets</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Management Cards -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h2 class="mb-4"><i class="fas fa-cogs me-2"></i>Management</h2>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-dog fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Pet Management</h5>
+                        <p class="card-text">Add, view, edit, and manage all pet information including health records and owner details.</p>
+                        <a href="/pets" class="btn btn-primary">Manage Pets</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-users fa-3x text-success mb-3"></i>
+                        <h5 class="card-title">Owner Management</h5>
+                        <p class="card-text">Manage pet owner information, contact details, and track their pets.</p>
+                        <a href="/owners" class="btn btn-success">Manage Owners</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-calendar fa-3x text-info mb-3"></i>
+                        <h5 class="card-title">Appointment Scheduling</h5>
+                        <p class="card-text">Schedule, reschedule, and manage pet appointments with veterinarians.</p>
+                        <a href="/appointments" class="btn btn-info">Manage Appointments</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-paw me-2"></i>Pet Care Management System</h5>
+                    <p class="mb-0">Professional pet care management solution</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p class="mb-0">
+                        <i class="fas fa-code me-1"></i>Built with Spring Boot & OOP Principles
+                    </p>
+                    <small class="text-muted">© 2025 Pet Care System. All rights reserved.</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

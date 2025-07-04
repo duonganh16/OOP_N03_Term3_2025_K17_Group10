@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý Thú cưng - Hệ thống Chăm sóc Thú cưng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #1976d2;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .nav-buttons {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .btn {
+            background-color: #1976d2;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 0 10px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #1565c0;
+        }
+
+        .btn-secondary {
+            background-color: #757575;
+        }
+
+        .btn-secondary:hover {
+            background-color: #616161;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #1976d2;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #1976d2;
+        }
+
+        .feature-card h3 {
+            margin-top: 0;
+            color: #1976d2;
+        }
+
+        .demo-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .demo-table th, .demo-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .demo-table th {
+            background-color: #1976d2;
+            color: white;
+        }
+
+        .demo-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<header>🐾 Quản lý Thú cưng</header>
+
+<div class="container">
+    <div class="nav-buttons">
+        <a href="/" class="btn btn-secondary">🏠 Trang chủ</a>
+        <a href="/Pet/form" class="btn">📝 Thêm thú cưng mới</a>
+        <a href="/owners.html" class="btn btn-secondary">👤 Quản lý chủ</a>
+        <a href="/appointments.html" class="btn btn-secondary">📅 Lịch khám</a>
+    </div>
+
+    <div class="content-section">
+        <h2>🐾 Quản lý Thú cưng</h2>
+        <p>Chào mừng đến với hệ thống quản lý thú cưng. Tại đây bạn có thể:</p>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>📝 Đăng ký thú cưng mới</h3>
+                <p>Thêm thông tin thú cưng bao gồm tên, loại, tuổi và thông tin sức khỏe.</p>
+                <a href="/Pet/form" class="btn">Đăng ký ngay</a>
+            </div>
+            
+            <div class="feature-card">
+                <h3>📋 Xem danh sách thú cưng</h3>
+                <p>Xem tất cả thú cưng đã đăng ký trong hệ thống.</p>
+                <a href="#" class="btn">Xem danh sách</a>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🔍 Tìm kiếm thú cưng</h3>
+                <p>Tìm kiếm thú cưng theo tên, loại hoặc chủ sở hữu.</p>
+                <a href="#" class="btn">Tìm kiếm</a>
+            </div>
+            
+            <div class="feature-card">
+                <h3>📊 Thống kê</h3>
+                <p>Xem thống kê về số lượng thú cưng theo loại và tình trạng sức khỏe.</p>
+                <a href="#" class="btn">Xem thống kê</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>📊 Danh sách thú cưng mẫu</h2>
+        <table class="demo-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên</th>
+                    <th>Loại</th>
+                    <th>Tuổi</th>
+                    <th>Chủ sở hữu</th>
+                    <th>Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>Buddy</td>
+                    <td>Chó Golden Retriever</td>
+                    <td>3 tuổi</td>
+                    <td>Nguyễn Văn A</td>
+                    <td>Khỏe mạnh</td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>Mimi</td>
+                    <td>Mèo Ba Tư</td>
+                    <td>2 tuổi</td>
+                    <td>Trần Thị B</td>
+                    <td>Khỏe mạnh</td>
+                </tr>
+                <tr>
+                    <td>003</td>
+                    <td>Charlie</td>
+                    <td>Chó Poodle</td>
+                    <td>5 tuổi</td>
+                    <td>Lê Văn C</td>
+                    <td>Cần khám</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

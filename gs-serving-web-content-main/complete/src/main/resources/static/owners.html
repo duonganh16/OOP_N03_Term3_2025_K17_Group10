@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý Chủ thú cưng - Hệ thống Chăm sóc Thú cưng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #1976d2;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .nav-buttons {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .btn {
+            background-color: #1976d2;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 0 10px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #1565c0;
+        }
+
+        .btn-secondary {
+            background-color: #757575;
+        }
+
+        .btn-secondary:hover {
+            background-color: #616161;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #1976d2;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #1976d2;
+        }
+
+        .feature-card h3 {
+            margin-top: 0;
+            color: #1976d2;
+        }
+
+        .demo-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .demo-table th, .demo-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .demo-table th {
+            background-color: #1976d2;
+            color: white;
+        }
+
+        .demo-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .owner-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .owner-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .info-label {
+            font-weight: bold;
+            margin-right: 10px;
+            min-width: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<header>👤 Quản lý Chủ thú cưng</header>
+
+<div class="container">
+    <div class="nav-buttons">
+        <a href="/" class="btn btn-secondary">🏠 Trang chủ</a>
+        <a href="/pets.html" class="btn btn-secondary">🐾 Quản lý thú cưng</a>
+        <a href="#" class="btn">👤 Thêm chủ mới</a>
+        <a href="/appointments.html" class="btn btn-secondary">📅 Lịch khám</a>
+    </div>
+
+    <div class="content-section">
+        <h2>👤 Quản lý Chủ thú cưng</h2>
+        <p>Quản lý thông tin của các chủ sở hữu thú cưng trong hệ thống.</p>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>📝 Đăng ký chủ mới</h3>
+                <p>Thêm thông tin chủ sở hữu mới bao gồm tên, địa chỉ, số điện thoại và email.</p>
+                <a href="#" class="btn">Đăng ký ngay</a>
+            </div>
+            
+            <div class="feature-card">
+                <h3>📋 Danh sách chủ</h3>
+                <p>Xem tất cả chủ sở hữu đã đăng ký trong hệ thống.</p>
+                <a href="#" class="btn">Xem danh sách</a>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🔍 Tìm kiếm chủ</h3>
+                <p>Tìm kiếm chủ sở hữu theo tên, số điện thoại hoặc email.</p>
+                <a href="#" class="btn">Tìm kiếm</a>
+            </div>
+            
+            <div class="feature-card">
+                <h3>📊 Thống kê</h3>
+                <p>Xem thống kê về số lượng chủ và thú cưng của họ.</p>
+                <a href="#" class="btn">Xem thống kê</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>📊 Danh sách chủ thú cưng</h2>
+        
+        <div class="owner-card">
+            <h3>👤 Nguyễn Văn A</h3>
+            <div class="owner-info">
+                <div class="info-item">
+                    <span class="info-label">📧 Email:</span>
+                    <span>nguyenvana@email.com</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">📞 Điện thoại:</span>
+                    <span>0123-456-789</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">🏠 Địa chỉ:</span>
+                    <span>123 Đường ABC, Quận 1, TP.HCM</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">🐾 Thú cưng:</span>
+                    <span>Buddy (Chó Golden Retriever)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="owner-card">
+            <h3>👤 Trần Thị B</h3>
+            <div class="owner-info">
+                <div class="info-item">
+                    <span class="info-label">📧 Email:</span>
+                    <span>tranthib@email.com</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">📞 Điện thoại:</span>
+                    <span>0987-654-321</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">🏠 Địa chỉ:</span>
+                    <span>456 Đường XYZ, Quận 2, TP.HCM</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">🐾 Thú cưng:</span>
+                    <span>Mimi (Mèo Ba Tư)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="owner-card">
+            <h3>👤 Lê Văn C</h3>
+            <div class="owner-info">
+                <div class="info-item">
+                    <span class="info-label">📧 Email:</span>
+                    <span>levanc@email.com</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">📞 Điện thoại:</span>
+                    <span>0369-258-147</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">🏠 Địa chỉ:</span>
+                    <span>789 Đường DEF, Quận 3, TP.HCM</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">🐾 Thú cưng:</span>
+                    <span>Charlie (Chó Poodle)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle ?: 'Pet Form'} + ' - Pet Care System'">Pet Form - Pet Care System</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 25px;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #2c3e50 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-paw me-2"></i>Pet Care System
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/"><i class="fas fa-home me-1"></i>Home</a>
+                <a class="nav-link active" href="/pets"><i class="fas fa-dog me-1"></i>Pets</a>
+                <a class="nav-link" href="/owners"><i class="fas fa-users me-1"></i>Owners</a>
+                <a class="nav-link" href="/appointments"><i class="fas fa-calendar me-1"></i>Appointments</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Flash Messages -->
+        <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>
+            <span th:text="${success}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        
+        <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            <span th:text="${error}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <!-- Page Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h2 mb-0" th:text="${pageTitle ?: 'Pet Form'}">Pet Form</h1>
+            <a href="/pets" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-1"></i>Back to Pets
+            </a>
+        </div>
+
+        <!-- Pet Form -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-paw me-2"></i>Pet Information
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="${formAction ?: '/pets'}" method="post" th:object="${pet}">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Pet Name *</label>
+                                    <input type="text" class="form-control" id="name" th:field="*{name}" required
+                                           placeholder="Enter pet name" minlength="1" maxlength="100">
+                                    <div class="form-text">Required field</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="species" class="form-label">Species *</label>
+                                    <select class="form-select" id="species" th:field="*{species}" required>
+                                        <option value="">Select Species</option>
+                                        <option value="Dog">Dog</option>
+                                        <option value="Cat">Cat</option>
+                                        <option value="Bird">Bird</option>
+                                        <option value="Rabbit">Rabbit</option>
+                                        <option value="Fish">Fish</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <div class="form-text">Required field</div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="breed" class="form-label">Breed</label>
+                                    <input type="text" class="form-control" id="breed" th:field="*{breed}" placeholder="e.g., Golden Retriever">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="color" class="form-label">Color</label>
+                                    <input type="text" class="form-control" id="color" th:field="*{color}" placeholder="e.g., Brown, White">
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="age" class="form-label">Age (years)</label>
+                                    <input type="number" class="form-control" id="age" th:field="*{age}" min="0" max="50" placeholder="0">
+                                    <div class="form-text">Optional (0-50 years)</div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="weight" class="form-label">Weight (kg)</label>
+                                    <input type="number" class="form-control" id="weight" th:field="*{weight}" step="0.1" min="0.1" max="200" placeholder="0.0">
+                                    <div class="form-text">Optional (0.1-200 kg)</div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <select class="form-select" id="gender" th:field="*{gender}">
+                                        <option value="UNKNOWN">Unknown</option>
+                                        <option value="MALE">Male</option>
+                                        <option value="FEMALE">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="ownerId" class="form-label">Owner</label>
+                                    <select class="form-select" id="ownerId" th:field="*{ownerId}">
+                                        <option value="">No Owner</option>
+                                        <option th:each="owner : ${owners}" 
+                                                th:value="${owner.ownerId}" 
+                                                th:text="${owner.name}"
+                                                th:selected="${pet.ownerId != null and pet.ownerId == owner.ownerId}">Owner Name</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="healthStatus" class="form-label">Health Status</label>
+                                    <select class="form-select" id="healthStatus" th:field="*{healthStatus}">
+                                        <option value="HEALTHY">Healthy</option>
+                                        <option value="NEEDS_CHECKUP">Needs Checkup</option>
+                                        <option value="SICK">Sick</option>
+                                        <option value="RECOVERING">Recovering</option>
+                                        <option value="OVERWEIGHT">Overweight</option>
+                                        <option value="UNDERWEIGHT">Underweight</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between">
+                                <a href="/pets" class="btn btn-outline-secondary">
+                                    <i class="fas fa-times me-1"></i>Cancel
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-1"></i><span th:text="${submitText ?: 'Save Pet'}">Save Pet</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

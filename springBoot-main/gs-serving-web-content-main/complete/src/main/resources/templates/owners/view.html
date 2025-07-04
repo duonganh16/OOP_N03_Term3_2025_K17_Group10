@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${owner != null ? owner.name + ' - Owner Details' : 'Owner Details'} + ' - Pet Care System'">Owner Details - Pet Care System</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 25px;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #2c3e50 !important;
+        }
+        .info-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+        .info-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-paw me-2"></i>Pet Care System
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/"><i class="fas fa-home me-1"></i>Home</a>
+                <a class="nav-link" href="/pets"><i class="fas fa-dog me-1"></i>Pets</a>
+                <a class="nav-link active" href="/owners"><i class="fas fa-users me-1"></i>Owners</a>
+                <a class="nav-link" href="/appointments"><i class="fas fa-calendar me-1"></i>Appointments</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Flash Messages -->
+        <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>
+            <span th:text="${success}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        
+        <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            <span th:text="${error}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <!-- Page Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h2 mb-0">
+                <i class="fas fa-user me-2"></i><span th:text="${owner != null ? owner.name : 'Owner Details'}">Owner Name</span>
+            </h1>
+            <div>
+                <a th:href="@{/owners/{id}/edit(id=${owner != null ? owner.ownerId : 0})}" class="btn btn-warning" th:if="${owner != null}">
+                    <i class="fas fa-edit me-1"></i>Edit
+                </a>
+                <a href="/owners" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-1"></i>Back to Owners
+                </a>
+            </div>
+        </div>
+
+        <div th:if="${owner != null}">
+            <div class="row">
+                <!-- Owner Information -->
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-info-circle me-2"></i>Owner Information
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="info-item">
+                                <strong>Full Name:</strong>
+                                <div th:text="${owner.name}">Owner Name</div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <strong>Email:</strong>
+                                <div th:if="${owner.email != null and owner.email != ''}">
+                                    <i class="fas fa-envelope me-1"></i>
+                                    <a th:href="'mailto:' + ${owner.email}" th:text="${owner.email}">email@example.com</a>
+                                </div>
+                                <div th:unless="${owner.email != null and owner.email != ''}" class="text-muted">
+                                    No email provided
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <strong>Phone:</strong>
+                                <div th:if="${owner.phone != null and owner.phone != ''}">
+                                    <i class="fas fa-phone me-1"></i>
+                                    <a th:href="'tel:' + ${owner.phone}" th:text="${owner.phone}">+84 123 456 789</a>
+                                </div>
+                                <div th:unless="${owner.phone != null and owner.phone != ''}" class="text-muted">
+                                    No phone provided
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <strong>Address:</strong>
+                                <div th:if="${owner.address != null and owner.address != ''}">
+                                    <i class="fas fa-map-marker-alt me-1"></i>
+                                    <span th:text="${owner.address}">Address</span>
+                                </div>
+                                <div th:unless="${owner.address != null and owner.address != ''}" class="text-muted">
+                                    No address provided
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <strong>Registration Date:</strong>
+                                <div th:if="${owner.createdAt != null}">
+                                    <i class="fas fa-calendar me-1"></i>
+                                    <span th:text="${#temporals.format(owner.createdAt, 'dd/MM/yyyy HH:mm')}">Date</span>
+                                </div>
+                                <div th:unless="${owner.createdAt != null}" class="text-muted">
+                                    Not available
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Owner's Pets -->
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">
+                                <i class="fas fa-paw me-2"></i>Pets
+                                <span th:if="${ownerPets != null}" class="badge bg-primary ms-2" th:text="${ownerPets.size()}">0</span>
+                            </h5>
+                            <a th:href="@{/pets/new?ownerId={id}(id=${owner.ownerId})}" class="btn btn-sm btn-primary">
+                                <i class="fas fa-plus me-1"></i>Add Pet
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div th:if="${ownerPets != null and not #lists.isEmpty(ownerPets)}">
+                                <div th:each="pet : ${ownerPets}" class="d-flex justify-content-between align-items-center border-bottom py-2">
+                                    <div>
+                                        <strong th:text="${pet.name}">Pet Name</strong>
+                                        <br>
+                                        <small class="text-muted">
+                                            <span th:text="${pet.species}">Species</span>
+                                            <span th:if="${pet.breed != null and pet.breed != ''}" th:text="' - ' + ${pet.breed}"></span>
+                                            <span th:if="${pet.age != null}" th:text="', ' + ${pet.age} + ' years'"></span>
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <span class="badge bg-success" th:text="${pet.healthStatus != null ? pet.healthStatus : 'Unknown'}">Status</span>
+                                        <a th:href="@{/pets/{id}(id=${pet.petId})}" class="btn btn-sm btn-outline-info ms-2">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div th:if="${ownerPets == null or #lists.isEmpty(ownerPets)}" class="text-center py-4">
+                                <i class="fas fa-paw fa-2x text-muted mb-2"></i>
+                                <p class="text-muted mb-2">No pets registered yet</p>
+                                <a th:href="@{/pets/new?ownerId={id}(id=${owner.ownerId})}" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-plus me-1"></i>Add First Pet
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h6>Quick Actions</h6>
+                            <a th:href="@{/appointments/new?ownerId={id}(id=${owner.ownerId})}" class="btn btn-success me-2">
+                                <i class="fas fa-calendar-plus me-1"></i>Schedule Appointment
+                            </a>
+                            <a th:href="@{/pets/new?ownerId={id}(id=${owner.ownerId})}" class="btn btn-info me-2">
+                                <i class="fas fa-plus me-1"></i>Add Pet
+                            </a>
+                            <a th:href="@{/owners/{id}/edit(id=${owner.ownerId})}" class="btn btn-warning">
+                                <i class="fas fa-edit me-1"></i>Edit Owner
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error State -->
+        <div th:unless="${owner != null}" class="text-center py-5">
+            <i class="fas fa-user-times fa-3x text-muted mb-3"></i>
+            <h5 class="text-muted">Owner not found</h5>
+            <p class="text-muted">The requested owner could not be found.</p>
+            <a href="/owners" class="btn btn-primary">
+                <i class="fas fa-arrow-left me-1"></i>Back to Owners
+            </a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
