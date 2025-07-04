@@ -114,10 +114,9 @@ Chào mừng đến với **Hệ thống Chăm sóc Thú cưng**, một giải p
 - **Nhân viên (Staff)** cung cấp **Dịch vụ (Service)** cho **Thú cưng (Pet)** trong **Lịch hẹn (Appointment)**.
 
   
-#CLASS DIAGRAMS
+## CLASS DIAGRAMS
 ![Image](https://github.com/user-attachments/assets/a19c91d9-534a-4c77-8eef-496b0a3dce2c)
 
-//feeback: phan Method Class viet theo dung method vi du pet() o phan operation by nglthu
 
 #ADD
 ![Image](https://github.com/user-attachments/assets/0a03d174-3d55-4fb8-ad2b-85c99832e8f4)
@@ -149,11 +148,3 @@ In tổng số thú cưng
 Kết thúc
 ![Image](https://github.com/user-attachments/assets/2f0c851d-de40-47e0-aaa1-e5c97e231e53)
 
-## Giao diện kiểm tra Thú Cưng
-
-- Đường dẫn nhập: `/pet/form`
-- Xử lý kiểm tra: `/pet/validate`
-
-| Thành viên       | Chức năng UI đã làm                     | File liên quan                 |
-|------------------|------------------------------------------|--------------------------------|
-| Nguyễn Dương Ngọc Ánh     | Kiểm tra Pet hợp lệ bằng form và View   | PetController.java + HTML     |
