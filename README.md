@@ -117,7 +117,7 @@ Chào mừng đến với **Hệ thống Chăm sóc Thú cưng**, một giải p
 ## CLASS DIAGRAMS
 ![Image](https://github.com/user-attachments/assets/a19c91d9-534a-4c77-8eef-496b0a3dce2c)
 
-
+## Sequence Diagrams
 #ADD
 ![Image](https://github.com/user-attachments/assets/0a03d174-3d55-4fb8-ad2b-85c99832e8f4)
 
