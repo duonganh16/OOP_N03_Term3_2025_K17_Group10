@@ -149,7 +149,7 @@ In tổng số thú cưng
 •	Cài đặt JDK (Java Development Kit).
 •	Cài đặt IDE hỗ trợ Java SpringBoot .
 •	Cài đặt thư viện nếu chưa có sẵn.
-###	Clone repository từ   https://github.com/duonganh16/OOP_N03_Term3_2025_K17_Group10/tree/master hoặc chạy thẳng trên codespace
+###	Clone repository từ   https://github.com/duonganh16/OOP_N03_Term3_2025_K17_Group10/tree/master
 ###	Chạy chương trình:
       Import project vào IDE và cấu hình Java SpringBoot. Chạy để khởi động ứng dụng.
 
