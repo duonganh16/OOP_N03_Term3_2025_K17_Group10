@@ -146,14 +146,12 @@ In: ID, Tên, Loại, Tuổi của mỗi thú cưng
 
 In tổng số thú cưng
 
-Kết thúc
-![Image](https://github.com/user-attachments/assets/2f0c851d-de40-47e0-aaa1-e5c97e231e53)
+## Hướng dẫn cài đặt và chạy chương trình
+###	Cài đặt môi trường:
+•	Cài đặt JDK (Java Development Kit).
+•	Cài đặt IDE hỗ trợ Java SpringBoot .
+•	Cài đặt thư viện nếu chưa có sẵn.
+###	Clone repository từ   https://github.com/duonganh16/OOP_N03_Term3_2025_K17_Group10/tree/master hoặc chạy thẳng trên codespace
+###	Chạy chương trình:
+      Import project vào IDE và cấu hình Java SpringBoot. Chạy để khởi động ứng dụng.
 
-## Giao diện kiểm tra Thú Cưng
-
-- Đường dẫn nhập: `/pet/form`
-- Xử lý kiểm tra: `/pet/validate`
-
-| Thành viên       | Chức năng UI đã làm                     | File liên quan                 |
-|------------------|------------------------------------------|--------------------------------|
-| Nguyễn Dương Ngọc Ánh     | Kiểm tra Pet hợp lệ bằng form và View   | PetController.java + HTML     |
