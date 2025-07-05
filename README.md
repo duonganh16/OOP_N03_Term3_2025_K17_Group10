@@ -171,7 +171,7 @@ Chạy file App.java để khởi động ứng dụng.
 ![Image](GD3.jpg)
 
 ## Tầm nhìn phát triển
-**Cộng đồng yêu thích thú cưng**: Giao lưu thú cưng.
-**Báo mal điện tử về cho chủ tình trạng các bé**
-**Chia nhóm thú cưng** 
+- **Cộng đồng yêu thích thú cưng**: Giao lưu thú cưng.
+- **Báo mal điện tử về cho chủ tình trạng các bé**
+- **Chia nhóm thú cưng** 
 ...
