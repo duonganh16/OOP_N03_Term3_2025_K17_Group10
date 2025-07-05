@@ -8,9 +8,7 @@ Chào mừng đến với **Hệ thống Chăm sóc Thú cưng**, một giải p
 ### Các tính năng chính:
 - **Hồ sơ thú cưng chi tiết**: Quản lý thông tin của thú cưng như giống loài, tuổi tác, tình trạng sức khỏe.
 - **Theo dõi sức khỏe và lịch hẹn**: Cập nhật tình trạng sức khỏe của thú cưng và theo dõi các lịch hẹn khám bệnh, tiêm phòng.
-- **Nhắc nhở thuốc men**: Nhắc nhở chủ nuôi về các thuốc men cần thiết cho thú cưng và thời gian dùng thuốc.
-- **Cộng đồng yêu thú cưng**: Tạo ra một không gian kết nối những người yêu thú cưng, chia sẻ kinh nghiệm và hỗ trợ nhau trong việc chăm sóc.
-
+- **Quản lý chủ của thú cưng**
 ---
 
 ## Thành viên nhóm
@@ -161,3 +159,9 @@ In tổng số thú cưng
 ![Image](GD2.jpg)
 
 ![Image](GD3.jpg)
+
+## Tầm nhìn phát triển
+**Cộng đồng yêu thích thú cưng**: Giao lưu thú cưng.
+**Báo mal điện tử về cho chủ tình trạng các bé**
+**Chia nhóm thú cưng** 
+...
