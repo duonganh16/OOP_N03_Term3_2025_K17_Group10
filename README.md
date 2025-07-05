@@ -155,3 +155,9 @@ In tổng số thú cưng
 ###	Chạy chương trình:
       Import project vào IDE và cấu hình Java SpringBoot. Chạy để khởi động ứng dụng.
 
+## Giao diện ứng dụng
+![Image](GD1.jpg)
+
+![Image](GD2.jpg)
+
+![Image](GD3.jpg)
