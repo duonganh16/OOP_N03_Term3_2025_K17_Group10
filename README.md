@@ -149,19 +149,13 @@ Kết thúc
 
 
 ## Hướng dẫn cài đặt và chạy chương trình
-1.	Cài đặt môi trường:
-
-- Cài đặt JDK (Java Development Kit).
-- Cài đặt IDE hỗ trợ Java SpringBoot .
-- Cài đặt thư viện nếu chưa có sẵn.
-
-2.	Clone repository từ GitHub: https://github.com/duonganh16/OOP_N03_Term3_2025_K17_Group10.git
-
-3.	Chạy chương trình:
-
-Import project vào IDE và cấu hình Java SpringBoot.
-Chạy file App.java để khởi động ứng dụng.
-
+###	Cài đặt môi trường:
+•	Cài đặt JDK (Java Development Kit).
+•	Cài đặt IDE hỗ trợ Java SpringBoot .
+•	Cài đặt thư viện nếu chưa có sẵn.
+###	Clone repository từ   https://github.com/duonganh16/OOP_N03_Term3_2025_K17_Group10/tree/master
+###	Chạy chương trình:
+      Import project vào IDE và cấu hình Java SpringBoot. Chạy để khởi động ứng dụng.
 
 ## Giao diện ứng dụng
 ![Image](GD1.jpg)
