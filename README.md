@@ -9,6 +9,8 @@ Chào mừng đến với **Hệ thống Chăm sóc Thú cưng**, một giải p
 - **Hồ sơ thú cưng chi tiết**: Quản lý thông tin của thú cưng như giống loài, tuổi tác, tình trạng sức khỏe.
 - **Theo dõi sức khỏe và lịch hẹn**: Cập nhật tình trạng sức khỏe của thú cưng và theo dõi các lịch hẹn khám bệnh, tiêm phòng.
 - **Quản lý chủ của thú cưng**
+- **Tra cứu thông tin theo tên**
+- **Ước lượng tỉ lệ thú cưng theo chủ nuôi**
 ---
 
 ## Thành viên nhóm
